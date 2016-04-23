@@ -13,13 +13,17 @@
 
   <tbody>
     <% @posts.each do |post| %>
-      <tr>
-        <td><%= post.title %></td>
-        <td><%= post.content %></td>
-        <td><%= link_to 'Show', post %></td>
-        <td><%= link_to 'Edit', edit_post_path(post) %></td>
-        <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <article>
+    <h2><%= post.title %></h2>
+    <div class='post-meta'>
+      By: <%= post.author.name  %><br/>
+      Last updated: <%= post.created_at.to_s(:long) %>
+    </div>
+
+    <div class='post-content'>
+      <%= simple_format post.content  %>
+    </div>
+  </article>
     <% end %>
   </tbody>
 </table>
